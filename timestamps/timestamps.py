@@ -14,8 +14,6 @@ class DateConverter(Converter):
 
     async def convert(self, ctx: Context, arg: str) -> datetime.datetime:
         parsed = dateparser.parse(arg)
-        if parsed is None:
-            await ctx.send("Unrecognized Date/Time.")
         return parsed
 
 class TimeStamps(Cog):
@@ -69,6 +67,11 @@ class TimeStamps(Cog):
         except:
             await ctx.send("Error converting Date/Time, may be invalid.")
             return
+
+        if not ts:
+            await ctx.send("Error converting Date/Time, may be invalid.")
+            return
+
         message = f"Timestamps for **<t:{ts}:F>**\n\n"
         for i in "fdt":
             message += f"`<t:{ts}:{i.upper()}>`: <t:{ts}:{i.upper()}>\n"
