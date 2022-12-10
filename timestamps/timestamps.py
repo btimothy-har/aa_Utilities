@@ -66,6 +66,9 @@ class TimeStamps(Cog):
                 "information for this timestamp."
             )
             return
+        except:
+            await ctx.send("Error converting Date/Time, may be invalid.")
+            return
         message = f"Timestamps for **<t:{ts}:F>**\n\n"
         for i in "fdt":
             message += f"`<t:{ts}:{i.upper()}>`: <t:{ts}:{i.upper()}>\n"
