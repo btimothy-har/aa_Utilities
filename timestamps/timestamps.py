@@ -15,7 +15,7 @@ class DateConverter(Converter):
     async def convert(self, ctx: Context, arg: str) -> datetime.datetime:
         parsed = dateparser.parse(arg)
         if parsed is None:
-            raise BadArgument("Unrecognized date/time.")
+            await ctx.send("Unrecognized Date/Time.")
         return parsed
 
 class TimeStamps(Cog):
